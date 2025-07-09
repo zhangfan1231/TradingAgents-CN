@@ -1,13 +1,8 @@
-# 使用官方的Python 镜像作为基础镜像
-FROM python:3.10
-# 设置工作目录
+FROM python:3.11-slim
 WORKDIR /app
-# 将当前目录内容复制到容器的/app目录下
-COPY . /app
-# 安装任何需要的包
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir -r requirements_db.txt
-# 对外暴露的端口号
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+ENV PYTHONPATH=/app
 EXPOSE 8501
-# 运行命令
-CMD ["python", "web/app.py"]
+CMD ["python", "-m", "streamlit", "run", "web/app.py"]

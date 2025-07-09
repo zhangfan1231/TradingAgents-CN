@@ -1,5 +1,5 @@
-# 使用官方的Python 3.11镜像作为基础镜像
-FROM python:3.11
+# 使用官方的Python 镜像作为基础镜像
+FROM python:3.10
 # 设置工作目录
 WORKDIR /app
 # 将当前目录内容复制到容器的/app目录下

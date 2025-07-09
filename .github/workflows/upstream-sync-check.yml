@@ -42,7 +42,7 @@ jobs:
     
     - name: 添加上游仓库
       run: |
-        git remote add upstream https://github.com/TauricResearch/TradingAgents.git || true
+        git remote add upstream https://github.com/hsliuping/TradingAgents-CN.git || true
         git fetch upstream
     
     - name: 检查上游更新

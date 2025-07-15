@@ -1,0 +1,20 @@
+name: Docker Image CI
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build the Docker image
+        run: |
+          docker version
+          # 登录阿里云镜像仓库
+          docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} crpi-o5ybjl84oaitrq69.cn-hangzhou.personal.cr.aliyuncs.com
+          # cd TradingAgents-CN
+          # 使用Dockerfile构建镜像
+          docker build . --file Dockerfile --tag crpi-o5ybjl84oaitrq69.cn-hangzhou.personal.cr.aliyuncs.com/lucifer001/tradingagents-cn:0.0.2
+          # 推送镜像到镜像仓库
+          docker push crpi-o5ybjl84oaitrq69.cn-hangzhou.personal.cr.aliyuncs.com/lucifer001/tradingagents-cn:0.0.2
